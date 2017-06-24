@@ -1,8 +1,6 @@
-![Image](/image/banner.png)
-
-# Matisse
-[![Build Status](https://travis-ci.org/zhihu/Matisse.svg)](https://travis-ci.org/zhihu/Matisse)  
-Matisse is a well-designed local image and video selector for Android. You can  
+# GlideImagePicker
+  
+GlideImagePicker is a well-designed local image and video selector for Android. You can  
 - Use it in Activity or Fragment
 - Select images including JPEG, PNG, GIF and videos including MPEG, MP4 
 - Apply different themes, including two built-in themes and custom themes
@@ -10,9 +8,7 @@ Matisse is a well-designed local image and video selector for Android. You can
 - Define custom filter rules
 - More to find out yourself
 
-| Zhihu Style                    | Dracula Style                     | Preview                          |
-|:------------------------------:|:---------------------------------:|:--------------------------------:|
-|![](image/screenshot_zhihu.png) | ![](image/screenshot_dracula.png) | ![](image/screenshot_preview.png)|
+![](image/screenshot_zhihu.png) 
 
 ## Download
 Gradle:
@@ -23,26 +19,18 @@ repositories {
 }
 
 dependencies {
-    compile 'com.zhihu.android:matisse:0.4.3'
+    compile 'com.github.arover:GlideImagePicker:1.0'
 }
 ```
 
-Check out [Matisse releases](https://github.com/zhihu/Matisse/releases) to see more unstable versions.
+Check out [GlideImagePicker releases](https://github.com/arover/GlideImagePicker/releases) to see more unstable versions.
 
 ## ProGuard
-If you use [Glide](https://github.com/bumptech/glide) as your image engine, add rules as Glide's README says.  
-And add extra rule:
-```pro
--dontwarn com.squareup.picasso.**
-```
-
-If you use [Picasso](https://github.com/square/picasso) as your image engine, add rules as Picasso's README says.  
-And add extra rule:
 ```pro
 -dontwarn com.bumptech.glide.**
 ```
 
-## How do I use Matisse?
+## How do I use GlideImagePicker?
 #### Permission
 The library requires two permissions:
 - `android.permission.READ_EXTERNAL_STORAGE`
@@ -52,25 +40,24 @@ So if you are targeting Android 6.0+, you need to handle runtime permission requ
 
 #### Simple usage snippet
 ------
-Start `MatisseActivity` from current `Activity` or `Fragment`:
+Start `ImagePickerActivity` from current `Activity` or `Fragment`:
 
 ```java
-Matisse.from(MainActivity.this)
+ImagePicker.from(MainActivity.this)
         .choose(MimeType.allOf())
         .countable(true)
         .maxSelectable(9)
-        .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
+        .addFilter(new GifSizeFilter(320, 320, Filter.kb(5)))
         .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
         .thumbnailScale(0.85f)
-        .imageEngine(new GlideEngine())
         .forResult(REQUEST_CODE_CHOOSE);
 ```
  
 #### Themes
 There are two built-in themes you can use to start `MatisseActivity`:
-- `R.style.Matisse_Zhihu` (light mode)
-- `R.style.Matisse_Dracula` (dark mode)  
+- `R.style.GlideImagePicker.Light` (light mode)
+- `R.style.GlideImagePicker.Dark` (dark mode)  
 
 And Also you can define your own theme as you wish.
 
@@ -85,23 +72,14 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
         mSelected = Matisse.obtainResult(data);
-        Log.d("Matisse", "mSelected: " + mSelected);
+        Log.d(TAG, "selected: " + mSelected);
     }
 }
 ```
 
-#### More
-Find more details about Matisse in [wiki](https://github.com/zhihu/Matisse/wiki).
-
-## Contributing
-[Matisse is an Open Source Project](https://github.com/zhihu/Matisse/blob/master/CONTRIBUTING.md)
-
-## Thanks
-This library is inspired by [Laevatein](https://github.com/nohana/Laevatein) and uses some of its source code.
-
 ## License
 
-    Copyright 2017 Zhihu Inc.
+    Copyright 2017 Arover Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

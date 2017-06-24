@@ -13,24 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.arover.imagepicker.internal.ui.widget;
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-//        classpath 'com.novoda:bintray-release:0.5.0'
-    }
-}
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.FrameLayout;
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
+public class SquareFrameLayout extends FrameLayout {
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    public SquareFrameLayout(Context context) {
+        super(context);
+    }
+
+    public SquareFrameLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+    }
 }

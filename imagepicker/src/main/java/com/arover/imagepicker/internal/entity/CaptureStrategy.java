@@ -13,24 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.arover.imagepicker.internal.entity;
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-//        classpath 'com.novoda:bintray-release:0.5.0'
-    }
-}
+public class CaptureStrategy {
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
+    public final boolean isPublic;
+    public final String authority;
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    public CaptureStrategy(boolean isPublic, String authority) {
+        this.isPublic = isPublic;
+        this.authority = authority;
+    }
 }

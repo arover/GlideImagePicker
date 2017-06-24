@@ -13,24 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.arover.imagepicker.internal.utils;
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-//        classpath 'com.novoda:bintray-release:0.5.0'
-    }
-}
+import android.content.Context;
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
+public class UIUtils {
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    public static int spanCount(Context context, int gridExpectedSize) {
+        int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
+        float expected = (float) screenWidth / (float) gridExpectedSize;
+        int spanCount = Math.round(expected);
+        if (spanCount == 0) {
+            spanCount = 1;
+        }
+        return spanCount;
+    }
+
 }

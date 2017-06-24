@@ -14,8 +14,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<paths>
-    <external-path
-        name="my_images"
-        path="Android/data/com.arover.imagepicker.sample/files/Pictures"/>
-</paths>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.arover.imagepicker">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application>
+        <activity android:name="com.arover.imagepicker.ui.ImagePickerActivity"/>
+        <activity android:name="com.arover.imagepicker.internal.ui.AlbumPreviewActivity"/>
+        <activity android:name="com.arover.imagepicker.internal.ui.SelectedPreviewActivity"/>
+    </application>
+</manifest>
