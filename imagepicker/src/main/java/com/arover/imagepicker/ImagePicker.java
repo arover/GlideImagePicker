@@ -24,6 +24,8 @@ import android.support.v4.app.Fragment;
 import com.arover.imagepicker.ui.ImagePickerActivity;
 
 import java.lang.ref.WeakReference;
+import java.security.InvalidParameterException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -115,16 +117,28 @@ public final class ImagePicker {
      * <p>
      * Types not included in the set will still be shown in the grid but can't be chosen.
      *
-     * @param mimeTypes          MIME types set user can choose from.
-     * @param mediaTypeExclusive Whether can choose images and videos at the same time during one single choosing
+     * @param types          MIME types user can choose from.
+     * @param exclusive Whether can choose images and videos at the same time during one single choosing
      *                           process. true corresponds to not being able to choose images and videos at the same
      *                           time, and false corresponds to being able to do this.
      * @return {@link SelectionCreator} to build select specifications.
      * @see MimeType
      * @see SelectionCreator
      */
-    public SelectionCreator choose(Set<MimeType> mimeTypes, boolean mediaTypeExclusive) {
-        return new SelectionCreator(this, mimeTypes, mediaTypeExclusive);
+    public SelectionCreator choose(boolean exclusive, MimeType... types) {
+        if(types.length==0){
+            throw new InvalidParameterException("must provide at least one type");
+        }
+        Set<MimeType> typeSet = new HashSet<>();
+        for(MimeType t: types){
+            typeSet.add(t);
+        }
+
+        return new SelectionCreator(this, typeSet, exclusive);
+    }
+
+    public SelectionCreator choose(Set<MimeType> mimeTypes, boolean exclusive) {
+        return new SelectionCreator(this, mimeTypes, exclusive);
     }
 
     @Nullable

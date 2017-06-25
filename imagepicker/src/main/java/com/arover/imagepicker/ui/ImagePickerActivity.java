@@ -87,7 +87,7 @@ public class ImagePickerActivity extends AppCompatActivity implements
         setTheme(mSpec.themeId);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_matisse);
+        setContentView(R.layout.activity_image_picker);
 
         if (mSpec.needOrientationRestriction()) {
             setRequestedOrientation(mSpec.orientation);

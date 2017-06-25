@@ -77,7 +77,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                             return;
                         }
                         ImagePicker.from(SampleActivity.this)
-                                .choose(MimeType.ofAll(), false)
+                                .choose(MimeType.ofNoAnimImage(), false)
                                 .countable(true)
                                 .capture(true)
                                 .captureStrategy(
